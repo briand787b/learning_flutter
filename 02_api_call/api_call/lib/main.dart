@@ -13,17 +13,20 @@ class Client extends StatefulWidget {
 }
 
 class _ClientState extends State<Client> {
+  final _httpClient = HttpClient();
+  var _responses = <Text>[];
+
   void _printResponse() async {
     print('api call was made');
-    final req = await HttpClient().get('192.168.1.26', 8080, '/');
+    final req = await this._httpClient.get('tv.local', 8080, '/');
     final res = await req.close();
     await for (var contents in res.transform(Utf8Decoder())) {
-      print(contents);
+      setState(() => this._responses.add(Text(contents)));
     }
-    
+
     print('done');
   }
-  
+
   @override
   Widget build(BuildContext ctx) {
     return MaterialApp(
@@ -32,9 +35,20 @@ class _ClientState extends State<Client> {
         appBar: AppBar(
           title: Text('Title'),
         ),
-        body: RaisedButton(
-          child: Text('Make API Call'),
-          onPressed: this._printResponse,
+        body: Column(
+          children: [
+            RaisedButton(
+              child: Text('Make API Call'),
+              onPressed: this._printResponse,
+            ),
+            Row(
+              children: this._responses,
+            ),
+            RaisedButton(
+              child: Text('reset'),
+              onPressed: () => setState(this._responses.clear),
+            )
+          ],
         ),
       ),
     );

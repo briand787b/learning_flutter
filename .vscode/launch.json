@@ -5,15 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-<<<<<<< HEAD
-            "name": "Dart",
-            "program": "01_first_app/my_app/lib/main.dart",
+            "name": "01_first_app_namer",
+            "program": "01_first_app/startup_namer/lib/main.dart",
             "request": "launch",
             "type": "dart"
-        }
-=======
-            "name": "01_first_app",
-            "program": "01_first_app/startup_namer/lib/main.dart",
+        },
+        {
+            "name": "01_first_my_app",
+            "program": "01_first_app/my_app/lib/main.dart",
             "request": "launch",
             "type": "dart"
         },
@@ -23,6 +22,5 @@
             "request": "launch",
             "type": "dart"
         },
->>>>>>> origin/master
     ]
 }
