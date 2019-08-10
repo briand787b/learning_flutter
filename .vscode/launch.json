@@ -5,10 +5,24 @@
     "version": "0.2.0",
     "configurations": [
         {
+<<<<<<< HEAD
             "name": "Dart",
             "program": "01_first_app/my_app/lib/main.dart",
             "request": "launch",
             "type": "dart"
         }
+=======
+            "name": "01_first_app",
+            "program": "01_first_app/startup_namer/lib/main.dart",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "02_api_call",
+            "program": "02_api_call/api_call/lib/main.dart",
+            "request": "launch",
+            "type": "dart"
+        },
+>>>>>>> origin/master
     ]
 }
