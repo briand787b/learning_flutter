@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './question.dart';
+
 void main(List<String> args) {
   runApp(MyApp());
 }
@@ -7,23 +9,23 @@ void main(List<String> args) {
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
 
-  var questions = [
+  var _questions = [
     'What\'s your favorite color?',
-    'What\'s your favorite animal',
+    'What\'s your favorite animal?',
   ];
 
   Function() answerQuestion(int answerIndex) {
     return () {
       print('Answer $answerIndex chosen');
-      setState(() =>
-          this.questionIndex = (this.questionIndex + 1) % this.questions.length);
+      setState(() => this._questionIndex =
+          (this._questionIndex + 1) % this._questions.length);
     };
   }
 
@@ -36,7 +38,7 @@ class MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text(questions[this.questionIndex]),
+            Question(_questions[this._questionIndex]),
             RaisedButton(
               child: Text('Answer 1'),
               onPressed: this.answerQuestion(1),
@@ -48,18 +50,6 @@ class MyAppState extends State<MyApp> {
             RaisedButton(
               child: Text('Answer 3'),
               onPressed: this.answerQuestion(3),
-            ),
-            RaisedButton(
-              child: Text('Reset'),
-              onPressed: () => setState(() => this.questionIndex = 0),
-            ),
-            RaisedButton(
-              child: Text('See if i can reset question without setState()'),
-              onPressed: () {
-                // this.questions.insert(2, 'new question, bitch!'); - doesnt work
-                this.questions[this.questionIndex] = 'new question, bitch';
-                print('length of questions ${this.questions.length}');
-              },
             ),
           ],
         ),
