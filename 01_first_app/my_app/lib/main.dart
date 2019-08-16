@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/result.dart';
+import 'package:tuple/tuple.dart';
 
-import './question.dart';
-import './answer.dart';
+import './quiz.dart';
+import './result.dart';
 
 void main(List<String> args) {
   runApp(MyApp());
@@ -15,26 +17,58 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var _questionIndex = 0;
+  int _questionIndex = 0;
+  int _totalScore = 0;
 
   final _questions = <Map<String, Object>>[
     {
       'questionText': 'What\'s your favorite color?',
-      'answers': ['Black', 'Red', 'Green', 'White']
+      'answers': [
+        {'Black': 10},
+        {'Red': 0},
+        {'Green': 0},
+        {'White': 0},
+      ]
     },
     {
       'questionText': 'What\'s your favorite animal?',
-      'answers': ['Rabbit', 'Snake', 'Elephant', 'Lion'],
+      'answers': [
+        {'Rabbit': 10},
+        {'Snake': 0},
+        {'Elephant': 0},
+        {'Lion': 0},
+      ],
     },
     {
       'questionText': 'Who\'s your favorite instructor?',
-      'answers': ['Max', 'Max', 'Max', 'Max'],
+      'answers': [
+        {'Max': 10},
+        {'Max': 0},
+        {'Max': 0},
+        {'Max': 0},
+      ],
     },
   ];
 
-  void _answerQuestion() {
-    setState(() => this._questionIndex =
-        (this._questionIndex + 1) % this._questions.length);
+  Function _answerQuestion(int score) {
+    return () {
+      this._totalScore += score;
+
+      if (this._questionIndex < (this._questions.length - 1)) {
+        setState(() {
+          print('question length: ${this._questions.length}');
+          print('question index: ${this._questionIndex}');
+          this._questionIndex++;
+        });
+      }
+    };
+  }
+
+  void _resetQuiz() {
+    setState(() {
+      this._totalScore = 0;
+      this._questionIndex = 0;
+    });
   }
 
   @override
@@ -57,15 +91,17 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('My First App'),
         ),
-        body: Column(
-          children: [
-            Question(this._questions[this._questionIndex]['questionText']),
-            ...(this._questions[this._questionIndex]['answers'] as List<String>)
-                .map((answerText) {
-              return Answer(answerText, this._answerQuestion);
-            }),
-          ],
-        ),
+        body: this._questionIndex < (this._questions.length - 1)
+            ? Quiz(
+                this._questions[this._questionIndex]['questionText'],
+                (this._questions[this._questionIndex]['answers']
+                        as List<Map<String, int>>)
+                    .map((Map<String, int> a) =>
+                        Tuple2<String, int>((a).keys.first, (a).values.first))
+                    .toList(),
+                this._answerQuestion,
+              )
+            : Result(this._totalScore, this._resetQuiz),
       ),
     );
   }
