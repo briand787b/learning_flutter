@@ -4,7 +4,7 @@ class NewTransaction extends StatelessWidget {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
-  final Function(String, double) txAddFn;
+  final void Function(String, double) txAddFn;
 
   NewTransaction(this.txAddFn);
 
