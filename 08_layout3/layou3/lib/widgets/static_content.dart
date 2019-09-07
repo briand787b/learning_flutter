@@ -8,12 +8,12 @@ class StaticContent extends StatelessWidget {
     return Container(
       height: 500,
       color: Colors.grey,
-      child: Column(children: <Widget>[
-        Header(),
-        Container(
-          height: 250,
-          child: Body(),),
-      ],),
+      child: Column(
+        children: <Widget>[
+          Header(),
+          Body(),
+        ],
+      ),
     );
   }
 }
