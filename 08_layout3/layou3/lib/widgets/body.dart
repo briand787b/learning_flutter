@@ -28,30 +28,45 @@ class Body extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Flexible(
-                child: Image.asset('assets/images/tall.jpg'),
                 fit: FlexFit.tight,
+                child: Text('tall')// Image.asset('assets/images/tall.jpg'),
               ),
               Flexible(
                 fit: FlexFit.tight,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  // mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Image.asset('assets/images/map.gif'),
-                    Container(
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            'Log In',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Text('Sync your to-dos & ticks'),
-                        ],
-                      ),
-                    )
-                  ],
+                child: Container(
+                  color: Colors.purple,
+                  child: Column(
+                    children: <Widget>[
+                      Text('hello world'),
+                    ],
+                  ),
                 ),
-              )
+                // fit: FlexFit.tight,
+                // child: Container(
+                //   height: 300,
+                //   color: Colors.purple,
+                //   child: Column(
+                //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //     // crossAxisAlignment: CrossAxisAlignment.center,
+                //     // mainAxisSize: MainAxisSize.min,
+                //     children: <Widget>[
+                //       Image.asset('assets/images/map.gif'),
+                //       Container(
+                //         color: Colors.amber,
+                //         child: Column(
+                //           children: <Widget>[
+                //             Text(
+                //               'Log In',
+                //               style: TextStyle(fontSize: 18),
+                //             ),
+                //             Text('Sync your to-dos & ticks'),
+                //           ],
+                //         ),
+                //       )
+                //     ],
+                //   ),
+                // ),
+              ),
             ],
           ),
         ),

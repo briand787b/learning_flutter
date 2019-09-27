@@ -18,7 +18,14 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.amber,
           fontFamily: 'Quicksand',
           textTheme: ThemeData.light().textTheme.copyWith(
-                title: TextStyle(fontFamily: 'OpenSans', fontWeight: FontWeight.bold, fontSize: 18),
+                title: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+                button: TextStyle(
+                  color: Colors.white,
+                ),
               ),
           appBarTheme: AppBarTheme(
             textTheme: ThemeData.light().textTheme.copyWith(
@@ -36,7 +43,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage>   {
+class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _userTransactions = [];
 
   List<Transaction> get _recentTransaction {
@@ -60,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage>   {
 
   void _startAddNewTransaction(BuildContext ctx) {
     print(this._recentTransaction);
-    
+
     showModalBottomSheet(
         context: ctx,
         builder: (bCtx) {
